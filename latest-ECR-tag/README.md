@@ -16,5 +16,5 @@ and then will patch a,b,c vars together which will become "v0.0.19" and will be 
 
 how to use
 
-$ ''' crtag=$(aws ecr describe-images --repository-name repository_name/image_name | jq '.imageDetails | sort_by(.imagePushedAt)[]' | jq --slurp '.[-1]' | jq '.imageTags | last' | jq --raw-output) && a=$(echo $crtag | cut -d '.' -f 1) && echo $crtag && b=$(echo $crtag | cut -d '.' -f 2) && c=$(echo $crtag | cut -d '.' -f 3) && c=$(($c+1)) && export tag="${a}.${b}.${c}" && echo $tag ''' 
+$ crtag=$(aws ecr describe-images --repository-name repository_name/image_name | jq '.imageDetails | sort_by(.imagePushedAt)[]' | jq --slurp '.[-1]' | jq '.imageTags | last' | jq --raw-output) && a=$(echo $crtag | cut -d '.' -f 1) && echo $crtag && b=$(echo $crtag | cut -d '.' -f 2) && c=$(echo $crtag | cut -d '.' -f 3) && c=$(($c+1)) && export tag="${a}.${b}.${c}" && echo $tag 
 
